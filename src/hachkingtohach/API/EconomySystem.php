@@ -5,7 +5,7 @@ namespace hachkingtohach\API;
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\utils\Config;
-use pocketmine\utils\TextFormat;
+use pocketmine\utils\TextFormat as C;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\command\Command;
@@ -30,7 +30,7 @@ class EconomySystem extends PluginBase implements Listener {
 		@mkdir($this->getDataFolder());
 		$this->saveDefaultConfig();
 		$this->getResource("config.yml");		
-		$this->getLogger()->info(TextFormat::GREEN."Enable!\n".TextFormat::AQUA."Plugin by @DragoVN, thanks for using!");
+		$this->getLogger()->info(C::GREEN."Enable!\n".C::AQUA."Plugin by @DragoVN, thanks for using!");
 	}
 	
 	public function registerScheduler(){
@@ -38,7 +38,7 @@ class EconomySystem extends PluginBase implements Listener {
 	}
 	
     public function onDisable(): void {
-		$this->getLogger()->info(TextFormat::RED."Disable!\n".TextFormat::AQUA."Plugin by @DragoVN, thanks for using!");
+		$this->getLogger()->info(C::RED."Disable!\n".C::AQUA."Plugin by @DragoVN, thanks for using!");
 	}
 
     public static function getInstance(): EconomySystem {
@@ -46,7 +46,8 @@ class EconomySystem extends PluginBase implements Listener {
 	}
     	
 	public function getDataFolderZ($name_data){
-		$file_data = new Config($this->getDataFolder().$this->getNameEconomy($name_data)."/".$this->getNameEconomy($name_data).".yml", Config::YAML);
+		$file_data = new Config($this->getDataFolder().$this->getNameEconomy($name_data).
+		                    "/".$this->getNameEconomy($name_data).".yml", Config::YAML);
 		return $file_data;
 	}	
 	
@@ -91,7 +92,7 @@ class EconomySystem extends PluginBase implements Listener {
     public function addEconomyPlayer($name_data, $playername, $amount) {
         $this->checkAmount($amount);
 		$this->checkEconomyPlayer($name_data, strtolower($playername));
-        $add = $add = $this->calculate($name_data, $playername, $amount, 2);
+		$add = $this->calculate($name_data, $playername, $amount, 2);
 		$this->saveData($name_data, $playername, $add);
 	}
 	
@@ -119,10 +120,10 @@ class EconomySystem extends PluginBase implements Listener {
 	
 	public function sendEconomyForPlayer($name_data, $name_1, $name_2, $amount) {
 		$this->checkAmount($amount);
-		$this->checkEconomyPlayer($name_data, strtolower($name_1));
-		$this->checkEconomyPlayer($name_data, strtolower($name_2));		
 		$reduce_player_1 = $this->calculate($name_data, strtolower($name_1), $amount, 1); 
 		$add_player_2 = $this->calculate($name_data, strtolower($name_2), $amount, 2);	
+		$this->checkEconomyPlayer($name_data, strtolower($name_1));
+		$this->checkEconomyPlayer($name_data, strtolower($name_2));				
 		$this->saveData($name_data, $name_1, $reduce_player_1);
 		$this->saveData($name_data, $name_1, $add_player_2);
 	}

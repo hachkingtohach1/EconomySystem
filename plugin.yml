@@ -1,0 +1,6 @@
+name: EconomySystem
+api: [3.0.0]
+version: 1.2
+main: hachkingtohach\API\EconomySystem
+author: hachkingtohach
+description: One Simple EconomyAPI System plugin for PmmP.

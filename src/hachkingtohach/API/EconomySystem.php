@@ -91,7 +91,7 @@ class EconomySystem extends PluginBase implements Listener {
     public function addEconomyPlayer($name_data, $playername, $amount) {
         $this->checkAmount($amount);
 		$this->checkEconomyPlayer($name_data, strtolower($playername));
-        $add = $this->getDataFolderZ($name_data)->get(strtolower($playername)) + $amount;
+        $add = $add = $this->calculate($name_data, $playername, $amount, 2);
 		$this->saveData($name_data, $playername, $add);
 	}
 	

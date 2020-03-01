@@ -12,7 +12,7 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
 
-use hachkingtohach\API\task\UpdateData;
+use hachkingtohach\API\task\UpdateEco;
 
 class EconomySystem extends PluginBase implements Listener {
 	
@@ -34,7 +34,7 @@ class EconomySystem extends PluginBase implements Listener {
 	}
 	
 	public function registerScheduler(){
-		$this->getScheduler()->scheduleRepeatingTask(new UpdateData($this), 20);
+		$this->getScheduler()->scheduleRepeatingTask(new UpdateEco($this), 20);
 	}
 	
     public function onDisable(): void {

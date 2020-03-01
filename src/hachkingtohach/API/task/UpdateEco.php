@@ -5,7 +5,7 @@ namespace hachkingtohach\API\Task;
 use hachkingtohach\API\EconomySystem;
 use pocketmine\scheduler\Task;
 
-class UpdateData extends Task{
+class UpdateEco extends Task{
 	
 	public function __construct(EconomySystem $plugin){
         $this->plugin = $plugin;
